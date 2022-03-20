@@ -124,6 +124,92 @@ function validateRegistationData($data) {
 
 }
 
+function klantvalidateRegistationData($data) {
+
+	$errors = [];
+	$name = trim( $data['name'] );
+	$location = trim( $data['location'] );
+
+	if ( strlen( $name ) <2 ) {
+		$errors['name'] = 'Geen geldige naam';
+	}
+
+	if ( strlen( $location ) <2 ) {
+		$errors['location'] = 'Geen geldige woonplaats';
+	}
+	
+
+	$data = [
+		'name' => $name,
+		'location' => $location
+	];
+
+	return [
+		'data' => $data,
+		'errors' => $errors
+	];
+
+}
+
+function createKlant($name, $location){
+
+
+	
+	$connection = dbConnect();
+	$sql = "INSERT INTO `klanten` (`klant`, `woonplaats`) VALUES (:name, :location)";
+			$statement = $connection->prepare( $sql );
+			$params = [
+				'name' => $name,
+				'location' => $location
+				
+			]; 
+			$statement->execute( $params );
+			header("Location: /ingelogd/dashboard/");
+
+}
+
+function itemvalidateRegistationData($data) {
+
+	$errors = [];
+	$klant = $data['klant'];
+	$aantaluren = $data['aantaluren'];
+	$extra = trim($data['extra']);
+	$userid = getLoggedInUsername();
+	$data = [
+		'klant' => $klant,
+		'userid' => $userid,
+		'aantaluren' => $aantaluren,
+		'extra' => $extra
+	];
+
+	return [
+		'data' => $data,
+		'errors' => $errors
+	];
+
+}
+
+function createItem($klant, $aantaluren, $extra){
+	$user_id = $_SESSION['user_id'];
+	$date = date('d-m-Y');
+	$time = date('H:i');
+	$connection = dbConnect();
+	$sql = "INSERT INTO `urenregistratie` (`klantid`, `userid`, `aantaluren`, `extra`, `date`, `time`) VALUES (:klantid, :userid, :aantaluren, :extra, :date, :time)";
+			$statement = $connection->prepare( $sql );
+			$params = [
+				'klantid' => $klant,
+				'userid' => $user_id,
+				'aantaluren' => $aantaluren,
+				'extra' => $extra,
+				'date' => $date,
+				'time' => $time
+			]; 
+			$statement->execute( $params );
+			header("Location: /ingelogd/dashboard/");
+
+}
+
+
 function validateLoginData($data) {
 
 	$errors = [];
@@ -178,7 +264,9 @@ function isAdmin($username){
 
 
 	if ($statement->rowCount() === 1 ) {
-		return $statement->fetch();
+		$str = json_encode($statement->fetch());
+		$number = (int)filter_var($str, FILTER_SANITIZE_NUMBER_INT);
+		return $number;
 	}
 
 	return false;
@@ -248,3 +336,78 @@ function getAllPosts(){
 	$blog = $statement->fetchAll();
 	print_r($blog); exit;
 }
+
+class Calendar {
+
+    private $active_year, $active_month, $active_day;
+    private $events = [];
+
+    public function __construct($date = null) {
+        $this->active_year = $date != null ? date('Y', strtotime($date)) : date('Y');
+        $this->active_month = $date != null ? date('m', strtotime($date)) : date('m');
+        $this->active_day = $date != null ? date('d', strtotime($date)) : date('d');
+    }
+
+    public function add_event($txt, $date, $days = 1, $color = '') {
+        $color = $color ? ' ' . $color : $color;
+        $this->events[] = [$txt, $date, $days, $color];
+    }
+
+    public function __toString() {
+        $num_days = date('t', strtotime($this->active_day . '-' . $this->active_month . '-' . $this->active_year));
+        $num_days_last_month = date('j', strtotime('last day of previous month', strtotime($this->active_day . '-' . $this->active_month . '-' . $this->active_year)));
+        $days = [0 => 'Sun', 1 => 'Mon', 2 => 'Tue', 3 => 'Wed', 4 => 'Thu', 5 => 'Fri', 6 => 'Sat'];
+        $first_day_of_week = array_search(date('D', strtotime($this->active_year . '-' . $this->active_month . '-1')), $days);
+        $html = '<div class="calendar">';
+        $html .= '<div class="header">';
+        $html .= '<div class="month-year">';
+        $html .= date('F Y', strtotime($this->active_year . '-' . $this->active_month . '-' . $this->active_day));
+        $html .= '</div>';
+        $html .= '</div>';
+        $html .= '<div class="days">';
+        foreach ($days as $day) {
+            $html .= '
+                <div class="day_name">
+                    ' . $day . '
+                </div>
+            ';
+        }
+        for ($i = $first_day_of_week; $i > 0; $i--) {
+            $html .= '
+                <div class="day_num ignore">
+                    ' . ($num_days_last_month-$i+1) . '
+                </div>
+            ';
+        }
+        for ($i = 1; $i <= $num_days; $i++) {
+            $selected = '';
+            if ($i == $this->active_day) {
+                $selected = ' selected';
+            }
+            $html .= '<div class="day_num' . $selected . '">';
+            $html .= '<span>' . $i . '</span>';
+            foreach ($this->events as $event) {
+                for ($d = 0; $d <= ($event[2]-1); $d++) {
+                    if (date('y-m-d', strtotime($this->active_year . '-' . $this->active_month . '-' . $i . ' -' . $d . ' day')) == date('y-m-d', strtotime($event[1]))) {
+                        $html .= '<div class="event' . $event[3] . '">';
+                        $html .= $event[0];
+                        $html .= '</div>';
+                    }
+                }
+            }
+            $html .= '</div>';
+        }
+        for ($i = 1; $i <= (42-$num_days-max($first_day_of_week, 0)); $i++) {
+            $html .= '
+                <div class="day_num ignore">
+                    ' . $i . '
+                </div>
+            ';
+        }
+        $html .= '</div>';
+        $html .= '</div>';
+        return $html;
+    }
+
+}
+?>

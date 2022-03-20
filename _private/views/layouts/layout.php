@@ -10,7 +10,7 @@
 		<?php echo $this->section( 'css' ) ?>
 	<?php endif; ?>
     
-    <link rel="icon" href="<?php echo site_url( '/images/icon.png' ) ?>">
+    <link rel="icon" href="<?php echo site_url( '/images/alleenlogo.png' ) ?>">
 
     
 </head>
@@ -37,19 +37,21 @@
             </a>
         </div>
 
-<?php if (json_encode(isAdmin(getLoggedInUsername()))[10] == 1):?>
+<?php if (isAdmin(getLoggedInUsername()) == 1):?>
     <ul class = "links"> 
             <a href="<?php echo url( '/ingelogd/dashboard/' ) ?>"<?php if ( current_route_is( '/ingelogd/dashboard/' ) ): ?> class="active"<?php endif ?>>Home</a>
             <a href="<?php echo url( 'agenda' ) ?>"<?php if ( current_route_is( 'agenda' ) ): ?> class="active"<?php endif ?>>Agenda</a>
             <a href="<?php echo url( 'myinfo' ) ?>"<?php if ( current_route_is( 'myinfo' ) ): ?> class="active"<?php endif ?>>Mijn Informatie</a>
-            <a href="<?php echo url( 'register' ) ?>"<?php if ( current_route_is( 'register' ) ): ?> class="active"<?php endif ?>>Gebuiker Maken</a>
+            <a href="<?php echo url( 'register' ) ?>"<?php if ( current_route_is( 'register' ) ): ?> class="active"<?php endif ?>>Gebuiker Registeren</a>
+            <a href="<?php echo url( 'klantregistratie' ) ?>"<?php if ( current_route_is( 'klantregistratie' ) ): ?> class="active"<?php endif ?>>Klant Registeren</a>
             <a href="<?php echo url( 'logout' ) ?>"<?php if ( current_route_is( 'logout' ) ): ?> class="active"<?php endif ?>>Uitloggen</a>
                 </ul>
     <?php else: ?>
         <ul class = "links"> 
             <a href="<?php echo url( '/ingelogd/dashboard/' ) ?>"<?php if ( current_route_is( '/ingelogd/dashboard/' ) ): ?> class="active"<?php endif ?>>Home</a>
             <a href="<?php echo url( 'agenda' ) ?>"<?php if ( current_route_is( 'agenda' ) ): ?> class="active"<?php endif ?>>Agenda</a>
-            <a href="<?php echo url( 'myinfo' ) ?>"<?php if ( current_route_is( 'myinfo' ) ): ?> class="active"<?php endif ?>>Mijn Informatie</a>
+            <a href="<?php echo url( 'itemregistratie' ) ?>"<?php if ( current_route_is( 'itemregistratie' ) ): ?> class="active"<?php endif ?>>Uren Formulier</a>
+            <a href="<?php echo url( 'history' ) ?>"<?php if ( current_route_is( 'history' ) ): ?> class="active"<?php endif ?>>Geschiedenis</a>
             <a href="<?php echo url( 'logout' ) ?>"<?php if ( current_route_is( 'logout' ) ): ?> class="active"<?php endif ?>>Uitloggen</a>
             </ul>
         <?php endif;?>

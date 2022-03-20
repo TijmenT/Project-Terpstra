@@ -1,6 +1,6 @@
 <html>
 <?php $this->layout('layouts::layout');?>
-<link rel="stylesheet" href="<?php echo site_url( '/css/style3.css' ) ?>" media="all">
+<link rel="stylesheet" href="<?php echo site_url( '/css/style4.css' ) ?>" media="all">
 <br>
 <br>
 <br>

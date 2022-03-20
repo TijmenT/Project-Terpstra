@@ -23,6 +23,14 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 
 	SimpleRouter::get('/agenda', 'AgendaController@AgendaDashboard')->name( 'agenda.dashboard' );
 
+	SimpleRouter::get('/itemregistratie', 'ItemController@ItemDashboard')->name( 'item.dashboard' );
+	SimpleRouter::get('/history', 'ItemController@ItemHistory')->name( 'history' );
+	SimpleRouter::post( '/item/verwerken', 'ItemController@itemregistrationprocess' )->name( 'item.process' );
+	
+
+	SimpleRouter::get('/klantregistratie', 'KlantController@KlantDashboard')->name( 'klant.dashboard' );
+	SimpleRouter::post( '/klant/verwerken', 'KlantController@klantregistrationprocess' )->name( 'klantregister.process' );
+
 
 
 	// STOP: Tot hier al je eigen URL's zetten, dit stukje laat de 4040 pagina zien als een route/url niet kan worden gevonden.

@@ -23,7 +23,19 @@ function getUserByUsername($username){
 	}
 
 	return false;
-	
+
+}
+
+function GetKlantById($klantid){
+	$connection = dbConnect();
+	$sql        = "SELECT * FROM `klanten` WHERE id = :id";
+	$statement = $connection->prepare($sql);
+	$statement->execute( ['id' => $klantid]);
+	if ($statement->rowCount() === 1 ) {
+		return $statement->fetch();
+	}
+
+	return false;
 }
 
 function getUserById($id){
