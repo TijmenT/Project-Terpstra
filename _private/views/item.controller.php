@@ -5,7 +5,7 @@
 <br>
 <br>
 
-<div id="login-box">
+<div id="item-box">
   <div class="left">
   
     <center><h1>Uren Registratie</h1></center>
@@ -13,6 +13,7 @@
     <br>
     <label for="klant">Klant: </label>
     <select name="klant" id="klant">
+    <option value="invalid">Kies hier</option>
     <?php
     $connection = dbConnect();
     $sql = "SELECT * FROM `klanten`";
@@ -27,6 +28,7 @@
     <br>
     <label for="aantaluren">Uren: </label>
     <select name="aantaluren" id="urenveld">
+    <option value="invalid">Kies hier</option>
     <option value="0,5">0,5</option>
     <option value="1">1,0</option>
     <option value="1,5">1,5</option>
@@ -51,6 +53,19 @@
     </select>
     <br>
     <br>
+
+    <label for="workdate">Datum: </label>
+    <select name="workdate" id="workdate">
+    <option value="<?php echo $datemain = date('d-m-Y')?>"><?php echo $datemain = date('d-m-Y')?></option>
+    <option value="<?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-1 day", $date));?>"><?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-1 day", $date));?></option>
+    <option value="<?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-2 day", $date));?>"><?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-2 day", $date));?></option>
+    <option value="<?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-3 day", $date));?>"><?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-3 day", $date));?></option>
+    <option value="<?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-4 day", $date));?>"><?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-4 day", $date));?></option>
+    <option value="<?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-5 day", $date));?>"><?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-5 day", $date));?></option>
+    <option value="<?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-6 day", $date));?>"><?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-6 day", $date));?></option>
+    </select>
+    <br>
+    <br>
     <textarea name="extra" cols="30" rows="4" placeholder="Extra Info"></textarea>
     <br>
     <center><input type="submit" name="item_submit" value="Inleveren" /></center>
@@ -58,3 +73,5 @@
   </div>
 </div>
 </html>
+
+<!--$date = strtotime($date); echo $prevday = date('d-m-Y', strtotime("-1 day", $date));-->

@@ -164,7 +164,7 @@ function createKlant($name, $location){
 				
 			]; 
 			$statement->execute( $params );
-			header("Location: /ingelogd/dashboard/");
+			header("Location: /ingelogd/dashboard/?not=Klant geregisteert!");
 
 }
 
@@ -172,6 +172,7 @@ function itemvalidateRegistationData($data) {
 
 	$errors = [];
 	$klant = $data['klant'];
+	$workdate = $data['workdate'];
 	$aantaluren = $data['aantaluren'];
 	$extra = trim($data['extra']);
 	$userid = getLoggedInUsername();
@@ -179,6 +180,7 @@ function itemvalidateRegistationData($data) {
 		'klant' => $klant,
 		'userid' => $userid,
 		'aantaluren' => $aantaluren,
+		'workdate' => $workdate,
 		'extra' => $extra
 	];
 
@@ -189,23 +191,24 @@ function itemvalidateRegistationData($data) {
 
 }
 
-function createItem($klant, $aantaluren, $extra){
+function createItem($klant, $aantaluren, $extra, $workdate){
 	$user_id = $_SESSION['user_id'];
 	$date = date('d-m-Y');
 	$time = date('H:i');
 	$connection = dbConnect();
-	$sql = "INSERT INTO `urenregistratie` (`klantid`, `userid`, `aantaluren`, `extra`, `date`, `time`) VALUES (:klantid, :userid, :aantaluren, :extra, :date, :time)";
+	$sql = "INSERT INTO `urenregistratie` (`klantid`, `userid`, `aantaluren`, `extra`, `workdate`, `date`, `time`) VALUES (:klantid, :userid, :aantaluren, :extra, :workdate, :date, :time)";
 			$statement = $connection->prepare( $sql );
 			$params = [
 				'klantid' => $klant,
 				'userid' => $user_id,
 				'aantaluren' => $aantaluren,
 				'extra' => $extra,
+				'workdate' => $workdate,
 				'date' => $date,
 				'time' => $time
 			]; 
 			$statement->execute( $params );
-			header("Location: /ingelogd/dashboard/");
+			header("Location: /ingelogd/dashboard/?not=Succesvol ingeleverd!");
 
 }
 

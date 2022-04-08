@@ -24,11 +24,21 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
+#item-box {
+  position: relative;
+  margin: 5% auto;
+  width: 450px;
+  height: 450px;
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
 .left {
+  margin: 5% auto;
+  margin-left: 25%;
   position: absolute;
   box-sizing: border-box;
-  margin-top: 4rem;
-  margin-left: 11.5rem;
 }
 
 h1 {

@@ -51,7 +51,7 @@
             <a href="<?php echo url( '/ingelogd/dashboard/' ) ?>"<?php if ( current_route_is( '/ingelogd/dashboard/' ) ): ?> class="active"<?php endif ?>>Home</a>
             <a href="<?php echo url( 'agenda' ) ?>"<?php if ( current_route_is( 'agenda' ) ): ?> class="active"<?php endif ?>>Agenda</a>
             <a href="<?php echo url( 'itemregistratie' ) ?>"<?php if ( current_route_is( 'itemregistratie' ) ): ?> class="active"<?php endif ?>>Uren Formulier</a>
-            <a href="<?php echo url( 'history' ) ?>"<?php if ( current_route_is( 'history' ) ): ?> class="active"<?php endif ?>>Geschiedenis</a>
+            <a href="<?php echo url( 'history' ) ?>"<?php if ( current_route_is( 'history ' ) ): ?> class="active"<?php endif ?>>Geschiedenis</a>
             <a href="<?php echo url( 'logout' ) ?>"<?php if ( current_route_is( 'logout' ) ): ?> class="active"<?php endif ?>>Uitloggen</a>
             </ul>
         <?php endif;?>

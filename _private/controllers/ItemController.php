@@ -34,13 +34,14 @@ class ItemController {
 
 
     if ( count( $result['errors'] ) === 0 ) {
-        createItem($result['data']['klant'], $result['data']['aantaluren'], $result['data']['extra'], $result['data']['userid']);
+        createItem($result['data']['klant'], $result['data']['aantaluren'], $result['data']['extra'], $result['data']['workdate'], $result['data']['userid']);
         
     } else {
             $errors['username'] = 'Deze registratie bestaat al';
         }
     
     }
+
 
 
 }
