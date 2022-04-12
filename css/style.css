@@ -279,6 +279,10 @@ nav .icon-burger .line {
     cursor: pointer;
     transition: 0.3s;
   }
+
+  #greenboost{
+      width: 25%;
+  }
   
   .closebtn:hover {
     color: black;

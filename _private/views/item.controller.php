@@ -19,6 +19,7 @@
     $sql = "SELECT * FROM `klanten`";
     $statement = $connection->query( $sql );
     $klanten = $statement->fetchAll();
+    
     ?>
     <?php foreach($klanten as $k):?>
     <option value="<?php echo $k['id']?>"><?php echo $k['klant']?> | <?php echo $k['woonplaats']?></option>
@@ -63,6 +64,11 @@
     <option value="<?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-4 day", $date));?>"><?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-4 day", $date));?></option>
     <option value="<?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-5 day", $date));?>"><?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-5 day", $date));?></option>
     <option value="<?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-6 day", $date));?>"><?php $date = strtotime($datemain); echo date('d-m-Y', strtotime("-6 day", $date));?></option>
+    </select>
+    <br>
+    <br>
+    <label for="greenboost">Greenboost: </label>
+    <input id="greenboost" type="number" name="greenboost" step="1">
     </select>
     <br>
     <br>

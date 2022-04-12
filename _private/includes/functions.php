@@ -175,6 +175,13 @@ function itemvalidateRegistationData($data) {
 	$workdate = $data['workdate'];
 	$aantaluren = $data['aantaluren'];
 	$extra = trim($data['extra']);
+	$tempgreenboost = $data['greenboost'];
+
+	if(str_contains(strval($tempgreenboost), ".")){
+		$greenboost = $tempgreenboost;
+	}elseif(str_contains(strval($tempgreenboost), ",")){
+		$greenboost = str_replace(",", ".", strval($tempgreenboost));
+	}
 	$userid = getLoggedInUsername();
 	$data = [
 		'klant' => $klant,

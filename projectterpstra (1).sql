@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 20 mrt 2022 om 23:29
--- Serverversie: 10.4.22-MariaDB
--- PHP-versie: 8.1.0
+-- Gegenereerd op: 12 apr 2022 om 13:58
+-- Serverversie: 10.4.17-MariaDB
+-- PHP-versie: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,13 +38,11 @@ CREATE TABLE `klanten` (
 --
 
 INSERT INTO `klanten` (`id`, `klant`, `woonplaats`) VALUES
-(1, 'test1', 'Opperdoes'),
-(2, 'test2', 'Medemblik'),
-(3, 'test3', 'Hoorn'),
-(6, 'Pietje Pet', 'Amsterdam'),
-(7, 'Jantje', 'Abbekerk'),
-(8, 'Sara', 'Hoorn'),
-(9, 'Jan', 'Middenmeer');
+(10, 'Test1', 'Hoorn'),
+(11, 'Jan', 'Medemblik'),
+(12, 'Pietje', 'Amsterdam'),
+(13, 'Hans', 'Alkmaar'),
+(14, 'Pietje', 'Hoorn');
 
 -- --------------------------------------------------------
 
@@ -58,6 +56,7 @@ CREATE TABLE `urenregistratie` (
   `userid` int(111) NOT NULL,
   `aantaluren` varchar(45) NOT NULL,
   `extra` varchar(255) NOT NULL,
+  `workdate` varchar(55) NOT NULL,
   `date` varchar(60) NOT NULL,
   `time` varchar(65) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -66,10 +65,12 @@ CREATE TABLE `urenregistratie` (
 -- Gegevens worden geëxporteerd voor tabel `urenregistratie`
 --
 
-INSERT INTO `urenregistratie` (`id`, `klantid`, `userid`, `aantaluren`, `extra`, `date`, `time`) VALUES
-(34, 3, 9, '1,5', '2', '19-03-2022', '16:00'),
-(35, 6, 9, '4,5', '3 zakken potgrond', '19-03-2022', '17:52'),
-(36, 1, 9, '0,5', '', '19-03-2022', '17:56');
+INSERT INTO `urenregistratie` (`id`, `klantid`, `userid`, `aantaluren`, `extra`, `workdate`, `date`, `time`) VALUES
+(52, 10, 9, '3', '1', '26-03-2022', '30-03-2022', '11:48'),
+(57, 10, 9, '3,5', '', '29-03-2022', '01-04-2022', '11:38'),
+(58, 11, 9, '10', '', '01-04-2022', '01-04-2022', '11:48'),
+(59, 13, 9, '4,5', '', '28-03-2022', '01-04-2022', '12:41'),
+(60, 10, 9, '7,5', 'tijmen i', '11-04-2022', '11-04-2022', '12:48');
 
 -- --------------------------------------------------------
 
@@ -125,13 +126,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `klanten`
 --
 ALTER TABLE `klanten`
-  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT voor een tabel `urenregistratie`
 --
 ALTER TABLE `urenregistratie`
-  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
