@@ -42,6 +42,7 @@
             <a href="<?php echo url( '/ingelogd/dashboard/' ) ?>"<?php if ( current_route_is( '/ingelogd/dashboard/' ) ): ?> class="active"<?php endif ?>>Home</a>
             <a href="<?php echo url( 'agenda' ) ?>"<?php if ( current_route_is( 'agenda' ) ): ?> class="active"<?php endif ?>>Agenda</a>
             <a href="<?php echo url( 'myinfo' ) ?>"<?php if ( current_route_is( 'myinfo' ) ): ?> class="active"<?php endif ?>>Mijn Informatie</a>
+            <a href="<?php echo url( 'allinfo' ) ?>"<?php if ( current_route_is( 'allinfo' ) ): ?> class="active"<?php endif ?>>Gegevens ophalen</a>
             <a href="<?php echo url( 'register' ) ?>"<?php if ( current_route_is( 'register' ) ): ?> class="active"<?php endif ?>>Gebuiker Registeren</a>
             <a href="<?php echo url( 'klantregistratie' ) ?>"<?php if ( current_route_is( 'klantregistratie' ) ): ?> class="active"<?php endif ?>>Klant Registeren</a>
             <a href="<?php echo url( 'logout' ) ?>"<?php if ( current_route_is( 'logout' ) ): ?> class="active"<?php endif ?>>Uitloggen</a>
@@ -63,4 +64,5 @@
     </nav>
     
 </body>
+
 </html>

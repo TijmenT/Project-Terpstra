@@ -10,8 +10,8 @@
   
     <h1>Klant Registeren</h1>
     <form action ="/klant/verwerken" method="POST">
-    <input type="text" name="name" placeholder="Naam" />
-    <input type="text" name="location" placeholder="Woonplaats" />
+    <input type="text" name="name" placeholder="Naam" required/>
+    <input type="text" name="location" placeholder="Woonplaats" required/>
     <input type="submit" name="klant_submit" value="Maken" />
     </form>
   </div>

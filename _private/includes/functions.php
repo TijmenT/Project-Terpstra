@@ -175,19 +175,29 @@ function itemvalidateRegistationData($data) {
 	$workdate = $data['workdate'];
 	$aantaluren = $data['aantaluren'];
 	$extra = trim($data['extra']);
-	$tempgreenboost = $data['greenboost'];
+	$cleaner = $data['cleaner'];
+	$algenpro = $data['algenpro'];
+	$greenboost = $data['greenboost'];
+	$mixprof = $data['mixprof'];
+	$potgrond = $data['potgrond'];
+	$bestrijding = $data['bestrijding'];
+	$machine = $data['machine'];
+	$stort = $data['stort'];
 
-	if(str_contains(strval($tempgreenboost), ".")){
-		$greenboost = $tempgreenboost;
-	}elseif(str_contains(strval($tempgreenboost), ",")){
-		$greenboost = str_replace(",", ".", strval($tempgreenboost));
-	}
 	$userid = getLoggedInUsername();
 	$data = [
 		'klant' => $klant,
 		'userid' => $userid,
 		'aantaluren' => $aantaluren,
 		'workdate' => $workdate,
+		'cleaner' => $cleaner,
+		'algenpro' => $algenpro,
+		'greenboost' => $greenboost,
+		'mixprof' => $mixprof,
+		'potgrond' => $potgrond,
+		'bestrijding' => $bestrijding,
+		'machine' => $machine,
+		'stort' => $stort,
 		'extra' => $extra
 	];
 
@@ -198,18 +208,26 @@ function itemvalidateRegistationData($data) {
 
 }
 
-function createItem($klant, $aantaluren, $extra, $workdate){
+function createItem($klant, $aantaluren, $cleaner, $algenpro, $greenboost, $mixprof, $potgrond, $bestrijding, $machine, $stort, $extra, $workdate){
 	$user_id = $_SESSION['user_id'];
 	$date = date('d-m-Y');
 	$time = date('H:i');
 	$connection = dbConnect();
-	$sql = "INSERT INTO `urenregistratie` (`klantid`, `userid`, `aantaluren`, `extra`, `workdate`, `date`, `time`) VALUES (:klantid, :userid, :aantaluren, :extra, :workdate, :date, :time)";
+	$sql = "INSERT INTO `urenregistratie` (`klantid`, `userid`, `aantaluren`, `cleaner`, `algenpro`, `greenboost`, `mixprof`, `potgrond`, `bestrijding`, `machine`, `stort`, `extra`, `workdate`, `date`, `time`) VALUES (:klantid, :userid, :aantaluren, :cleaner, :algenpro, :greenboost, :mixprof, :potgrond, :bestrijding, :machine, :stort, :extra, :workdate, :date, :time)";
 			$statement = $connection->prepare( $sql );
 			$params = [
 				'klantid' => $klant,
 				'userid' => $user_id,
 				'aantaluren' => $aantaluren,
 				'extra' => $extra,
+				'cleaner' => $cleaner,
+				'algenpro' => $algenpro,
+				'greenboost' => $greenboost,
+				'mixprof' => $mixprof,
+				'potgrond' => $potgrond,
+				'bestrijding' => $bestrijding,
+				'machine' => $machine,
+				'stort' => $stort,
 				'workdate' => $workdate,
 				'date' => $date,
 				'time' => $time
@@ -219,6 +237,33 @@ function createItem($klant, $aantaluren, $extra, $workdate){
 
 }
 
+
+function InfoData($data) {
+
+	$errors = [];
+	$klant = $data['klant'];
+	$periode = $data['periode'];
+	$data = [
+		'klant' => $klant,
+		'periode' => $periode
+	];
+
+	return [
+		'data' => $data,
+		'errors' => $errors
+	];
+
+}
+
+function FindData($klant, $periode){
+	$connection = dbConnect();
+	$klantid = GetKlantById($klant);
+    $sql = "SELECT * FROM `urenregistratie` WHERE `klantid` ='$klantid'";
+    $statement = $connection->query( $sql );
+    $info = $statement->fetchAll();
+	return $info;
+	header("Location: /ingelogd/dashboard/?not=Succesvol ingeleverd!");
+}
 
 function validateLoginData($data) {
 
