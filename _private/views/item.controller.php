@@ -69,27 +69,27 @@
     <br>
     <br>
     <label for="cleaner">Cleaner: </label>
-    <input id="greenboost" type="number" placeholder="KG" name="cleaner" step="0.1">
+    <input id="greenboost" type="number" placeholder="L" name="cleaner" step="0.1">
     <br>
     <br>
     <label for="algenpro">Algenpro: </label>
-    <input id="greenboost" type="number" placeholder="KG" name="algenpro" step="0.1">
+    <input id="greenboost" type="number" placeholder="L" name="algenpro" step="0.1">
     <br>
     <br>
     <label for="greenboost">Greenboost: </label>
-    <input id="greenboost" type="number" placeholder="KG" name="greenboost" step="0.1">
+    <input id="greenboost" type="number" placeholder="Zak" name="greenboost" step="0.1">
     <br>
     <br>
     <label for="mixprof">Mixprof: </label>
-    <input id="greenboost" type="number" placeholder="KG" name="mixprof" step="0.1">
+    <input id="greenboost" type="number" placeholder="Zak" name="mixprof" step="0.1">
     <br>
     <br>
     <label for="potgrond">Potgrond: </label>
-    <input id="greenboost" type="number" placeholder="KG" name="potgrond" step="0.1">
+    <input id="greenboost" type="number" placeholder="Zak" name="potgrond" step="0.1">
     <br>
     <br>
     <label for="bestrijding">Bestrijding: </label>
-    <input id="greenboost" type="number" placeholder="KG" name="bestrijding" step="0.1">
+    <input id="greenboost" type="number" placeholder="L" name="bestrijding" step="0.1">
     <br>
     <br>
     <label for="machine">Machine: </label>

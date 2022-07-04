@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 13 apr 2022 om 12:58
--- Serverversie: 10.4.22-MariaDB
--- PHP-versie: 8.1.0
+-- Gegenereerd op: 04 jul 2022 om 15:01
+-- Serverversie: 10.4.17-MariaDB
+-- PHP-versie: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,10 @@ INSERT INTO `klanten` (`id`, `klant`, `woonplaats`) VALUES
 (12, 'Pietje', 'Amsterdam'),
 (13, 'Hans', 'Alkmaar'),
 (14, 'Pietje', 'Hoorn'),
-(15, 'Test', 'VisDrop');
+(15, 'Test', 'VisDrop'),
+(16, 'Milo', 'Ijmuiden'),
+(17, 'Robin', 'Hoorn'),
+(18, 'Frans', 'Hoofddorp');
 
 -- --------------------------------------------------------
 
@@ -75,7 +78,14 @@ CREATE TABLE `urenregistratie` (
 --
 
 INSERT INTO `urenregistratie` (`id`, `klantid`, `userid`, `aantaluren`, `cleaner`, `algenpro`, `greenboost`, `mixprof`, `potgrond`, `bestrijding`, `machine`, `stort`, `extra`, `workdate`, `date`, `time`) VALUES
-(105, 14, 9, '1.5', '1', '1', '1', '1', '1', '1', '1', '1', '1', '12-04-2022', '13-04-2022', '12:16');
+(105, 14, 9, '1.5', '1', '1', '1', '1', '1', '1', '1', '1', '1', '12-04-2022', '13-04-2022', '12:16'),
+(106, 13, 9, '6', '11', '', '', '', '', '', '', '', '', '09-04-2022', '13-04-2022', '14:40'),
+(107, 12, 9, '6.5', '', '', '', '', '', '', '', '', '', '19-04-2022', '21-04-2022', '10:12'),
+(108, 12, 9, '2,5', '', '', '', '', '', '', '', '', '', '19-04-2022', '21-04-2022', '10:44'),
+(109, 16, 9, '4', '', '', '', '', '', '', '', '', '', '21-04-2022', '21-04-2022', '10:50'),
+(110, 12, 9, '5', '', '', '', '', '', '', '', '', '', '18-04-2022', '21-04-2022', '10:58'),
+(111, 13, 9, '1.5', '', '', '', '', '', '', '', '', '', '08-05-2022', '12-05-2022', '14:12'),
+(112, 12, 9, '2,5', '', '', '', '', '', '', '', '', '', '08-05-2022', '12-05-2022', '14:13');
 
 -- --------------------------------------------------------
 
@@ -131,13 +141,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `klanten`
 --
 ALTER TABLE `klanten`
-  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT voor een tabel `urenregistratie`
 --
 ALTER TABLE `urenregistratie`
-  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
